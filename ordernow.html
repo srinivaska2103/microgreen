@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍃</text></svg>">
+    <title>Microgreen Grow Kits</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C16747', // Terra-Cotta
+                        secondary: '#4A4238', // Deep Stone
+                        accent: '#E8DED1', // Sand
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; font-weight: 400; }
+        .mobile-menu-open { overflow: hidden; }
+        .dropdown:hover .dropdown-menu { display: block; }
+    </style>
+</head>
+<body class="bg-accent dark:bg-stone-900 text-stone-800 dark:text-stone-100 transition-colors duration-300">
+
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-stone-900/80 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-20 items-center">
+        <a href="index.html">
+            <div class="flex items-center gap-2 flex-shrink-0">
+            <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+                <i class="fas fa-leaf text-xl"></i>
+            </div>
+            <span class="text-xl font-600 tracking-tight text-primary uppercase">Micro</span>
+        </div>
+        </a>
+        
+
+        <div class="hidden lg:flex items-center space-x-6 xl:space-x-8" id="desktop-nav">
+    <a href="index.html" class="nav-link font-500 hover:text-primary transition whitespace-nowrap py-2 px-1 border-b-2 border-transparent">Home</a>
+    <a href="home2.html" class="nav-link font-500 hover:text-primary transition whitespace-nowrap py-2 px-1 border-b-2 border-transparent">Home2</a>
+    <a href="about.html" class="nav-link font-500 hover:text-primary transition whitespace-nowrap py-2 px-1 border-b-2 border-transparent">About</a>
+    <a href="service.html" class="nav-link font-500 hover:text-primary transition whitespace-nowrap py-2 px-1 border-b-2 border-transparent">Service</a>
+    <a href="contact.html" class="nav-link font-500 hover:text-primary transition whitespace-nowrap py-2 px-1 border-b-2 border-transparent">Contact</a>
+    
+    <div class="relative group dropdown">
+        <button id="dashboard-btn" class="flex items-center gap-1 font-500 hover:text-primary py-4 whitespace-nowrap border-b-2 border-transparent">
+            Dashboard <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="hidden group-hover:block absolute left-0 w-44 bg-white dark:bg-stone-800 shadow-xl rounded-md border border-stone-100 dark:border-stone-700 mt-0">
+            <a href="user.html" class="nav-link block px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-700 transition-colors">User Profile</a>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    // Get current filename (e.g., "index.html")
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    
+    // Select all links with the 'nav-link' class
+    const navLinks = document.querySelectorAll(".nav-link");
+    const dashboardBtn = document.getElementById("dashboard-btn");
+
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute("href");
+
+        // Check if the link's href matches the current path
+        if (linkPath === currentPath) {
+            // Apply Active Styles
+            link.classList.add("text-primary", "border-primary");
+            link.classList.remove("border-transparent");
+
+            // If the active link is inside the Dashboard dropdown, highlight the parent button too
+            if (link.closest(".dropdown")) {
+                dashboardBtn.classList.add("text-primary", "border-primary");
+                dashboardBtn.classList.remove("border-transparent");
+            }
+        }
+    });
+});
+</script>
+
+        <div class="hidden lg:flex items-center space-x-3 xl:space-x-4">
+            <div class="flex items-center bg-stone-100 dark:bg-stone-800 rounded-lg p-1">
+                <button id="ltr-toggle" class="px-3 py-1.5 text-xs font-600 rounded-md hover:bg-white dark:hover:bg-stone-700 transition-all">LTR</button>
+                <button id="dark-toggle" class="p-2 rounded-md hover:bg-white dark:hover:bg-stone-700 transition-all">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+            </div>
+            
+            <a href="ordernow.html" class="whitespace-nowrap">
+                <button class="bg-primary text-white px-5 py-2.5 rounded-full font-500 hover:opacity-90 transition shadow-lg shadow-primary/20">Order Now</button>
+            </a>
+            <a href="login.html" class="whitespace-nowrap">
+                <button class="border border-primary text-primary px-5 py-2.5 rounded-full font-500 hover:bg-primary hover:text-white transition">Login</button>
+            </a>
+        </div>
+
+        <div class="lg:hidden flex items-center gap-4">
+            <button id="mobile-menu-btn" class="p-2 text-2xl text-stone-700 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+   <div id="mobile-sidebar" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-[60] hidden transition-opacity duration-300">
+    
+    <div class="absolute right-0 top-0 h-screen w-72 bg-white dark:bg-stone-900 shadow-2xl ring-1 ring-stone-200 dark:ring-stone-800 transition-colors duration-300 flex flex-col">
+        
+        <div class="flex justify-between items-center p-6 border-b border-stone-100 dark:border-stone-800">
+            <span class="font-600 text-primary tracking-widest text-sm uppercase">Menu</span>
+            <button id="close-menu" class="w-10 h-10 flex items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:text-primary transition-all active:scale-90">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-6 custom-scrollbar">
+            <div class="flex flex-col space-y-1">
+                <a href="index.html" class="nav-link-m font-500 text-lg py-3 px-2 border-b border-stone-100 dark:border-stone-800 text-stone-800 dark:text-stone-100 hover:text-primary transition-colors">Home</a>
+                <a href="home2.html" class="nav-link-m font-500 text-lg py-3 px-2 border-b border-stone-100 dark:border-stone-800 text-stone-800 dark:text-stone-100 hover:text-primary transition-colors">Home2</a>
+                <a href="about.html" class="nav-link-m font-500 text-lg py-3 px-2 border-b border-stone-100 dark:border-stone-800 text-stone-800 dark:text-stone-100 hover:text-primary transition-colors">About</a>
+                <a href="service.html" class="nav-link-m font-500 text-lg py-3 px-2 border-b border-stone-100 dark:border-stone-800 text-stone-800 dark:text-stone-100 hover:text-primary transition-colors">Service</a>
+                <a href="contact.html" class="nav-link-m font-500 text-lg py-3 px-2 border-b border-stone-100 dark:border-stone-800 text-stone-800 dark:text-stone-100 hover:text-primary transition-colors">Contact</a>
+                
+                <div class="mt-4 py-2">
+                    <p class="text-[10px] uppercase text-stone-400 mb-2 px-2 tracking-[0.2em] font-600">Dashboard</p>
+                    <a href="user.html" class="nav-link-m flex items-center gap-3 pl-4 py-3 rounded-xl hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-300 transition-all">
+                        <i class="fas fa-user-circle text-primary"></i>
+                        <span class="font-500">User Profile</span>
+                    </a>
+                </div>
+
+                <div class="pt-6 space-y-3">
+                    <a href="ordernow.html" class="block">     
+                        <button class="w-full bg-primary text-white py-3.5 rounded-xl font-600 shadow-lg shadow-primary/20 active:scale-95 transition-all">
+                            Order Now
+                        </button>
+                    </a>
+                    <a href="login.html" class="block">
+                        <button class="w-full border-2 border-primary/20 dark:border-primary/40 text-primary py-3 rounded-xl font-600 hover:bg-primary/5 active:scale-95 transition-all">
+                            Login
+                        </button>
+                    </a>
+                </div>
+
+                <div class="flex gap-3 pt-8 pb-4 mt-4 border-t border-stone-100 dark:border-stone-800">
+                    <button id="ltr-toggle-m" class="flex-1 py-3 text-xs font-600 border border-stone-200 dark:border-stone-700 rounded-lg text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors uppercase tracking-tight">
+                        <i class="fas fa-language mr-2"></i> LTR
+                    </button>
+                    <button id="dark-toggle-m" class="flex-1 py-3 text-xs font-600 border border-stone-200 dark:border-stone-700 rounded-lg text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors uppercase tracking-tight">
+                        <i class="fas fa-adjust mr-2"></i> Mode
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    
+    // Select both desktop and mobile links
+    const allLinks = document.querySelectorAll(".nav-link, .nav-link-m");
+
+    allLinks.forEach(link => {
+        if (link.getAttribute("href") === currentPath) {
+            // Mobile styling: terracotta text + subtle background
+            if(link.classList.contains('nav-link-m')) {
+                link.classList.add("text-primary", "bg-stone-50", "dark:bg-stone-800/50");
+            } else {
+                // Desktop styling: terracotta text + bottom border
+                link.classList.add("text-primary", "border-primary");
+                link.classList.remove("border-transparent");
+            }
+        }
+    });
+});
+</script>
+    </nav>
+<section class="py-12 md:py-20 bg-stone-50 dark:bg-[#0A0A0A] transition-colors duration-500 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 xs:px-6 lg:px-8">
+        <section class="py-12 md:py-20 bg-stone-50 dark:bg-[#0A0A0A] transition-colors duration-500 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 xs:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <aside class="lg:col-span-5 space-y-6 order-2 lg:order-1">
+                <div class="bg-white dark:bg-[#1A1A1A] border border-stone-200 dark:border-stone-800 rounded-[32px] p-6 shadow-sm">
+                    <h2 class="text-xl font-600 mb-6 flex items-center gap-2">
+                        <i class="fas fa-shopping-bag text-[#C16747]"></i> Order Summary
+                    </h2>
+
+                    <div class="flex gap-4 p-4 bg-stone-50 dark:bg-stone-800/50 rounded-2xl border border-stone-100 dark:border-stone-700">
+                        <div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&q=80&w=200" alt="Starter Kit" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-600 text-sm text-stone-900 dark:text-white">Starter Grow Kit</h4>
+                            <p class="text-xs text-stone-500 mt-1">Grow fresh microgreens in 7 days</p>
+                            
+                            <div class="flex items-center justify-between mt-3">
+                                <div class="flex items-center gap-3 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-lg px-2 py-1">
+                                    <button class="text-[#C16747] hover:opacity-50 transition-opacity"><i class="fas fa-minus text-[10px]"></i></button>
+                                    <span class="text-sm font-600">1</span>
+                                    <button class="text-[#C16747] hover:opacity-50 transition-opacity"><i class="fas fa-plus text-[10px]"></i></button>
+                                </div>
+                                <span class="font-600 text-[#C16747]">$49.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex gap-2">
+                        <input type="text" placeholder="Coupon Code" class="flex-1 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#C16747] transition-all">
+                        <button class="px-6 bg-stone-900 dark:bg-stone-800 text-white rounded-xl font-600 text-sm hover:bg-[#C16747] transition-all">Apply</button>
+                    </div>
+
+                    <div class="mt-8 space-y-4">
+                        <p class="text-[10px] font-600 uppercase tracking-widest text-stone-500">Enhance Your Harvest</p>
+                        <div class="space-y-3">
+                            <label class="flex items-center justify-between p-3 rounded-xl border border-stone-100 dark:border-stone-800 hover:border-[#C16747]/30 cursor-pointer group transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4 accent-[#C16747]">
+                                    <span class="text-sm text-stone-700 dark:text-stone-300">Extra Seeds Pack</span>
+                                </div>
+                                <span class="text-sm font-600 text-[#C16747]">+$12</span>
+                            </label>
+                            <label class="flex items-center justify-between p-3 rounded-xl border border-stone-100 dark:border-stone-800 hover:border-[#C16747]/30 cursor-pointer group transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4 accent-[#C16747]">
+                                    <span class="text-sm text-stone-700 dark:text-stone-300">LED Grow Light</span>
+                                </div>
+                                <span class="text-sm font-600 text-[#C16747]">+$35</span>
+                            </label>
+                            <label class="flex items-center justify-between p-3 rounded-xl border border-stone-100 dark:border-stone-800 hover:border-[#C16747]/30 cursor-pointer group transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4 accent-[#C16747]">
+                                    <span class="text-sm text-stone-700 dark:text-stone-300">Nutrient Spray</span>
+                                </div>
+                                <span class="text-sm font-600 text-[#C16747]">+$8</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-stone-100 dark:border-stone-800 space-y-3">
+                        <div class="flex justify-between text-sm text-stone-500"><span>Subtotal</span><span>$49.00</span></div>
+                        <div class="flex justify-between text-sm text-stone-500"><span>Shipping</span><span class="text-green-600">FREE</span></div>
+                        <div class="flex justify-between text-lg font-600 text-stone-900 dark:text-white pt-2 border-t border-stone-100 dark:border-stone-800">
+                            <span>Total</span><span class="text-2xl">$49.00</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="lg:col-span-7 order-1 lg:order-2">
+                <div class="bg-white dark:bg-[#1A1A1A] border border-stone-200 dark:border-stone-800 rounded-[32px] p-6 md:p-10 shadow-xl">
+                    <form class="space-y-8" onsubmit="return false;">
+                        
+                        <div>
+                            <h3 class="text-lg font-600 mb-4 flex items-center gap-2"><i class="fas fa-user text-[#C16747] text-sm"></i> Customer Info</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input type="text" placeholder="Full Name" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3.5 outline-none focus:border-[#C16747] transition-all">
+                                <input type="email" placeholder="Email Address" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3.5 outline-none focus:border-[#C16747] transition-all">
+                                <input type="tel" placeholder="Phone Number" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3.5 outline-none focus:border-[#C16747] transition-all md:col-span-2">
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-600 mb-4 flex items-center gap-2"><i class="fas fa-map-marker-alt text-[#C16747] text-sm"></i> Delivery Address</h3>
+                            <div class="space-y-4">
+                                <input type="text" placeholder="Street Address" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3.5 outline-none focus:border-[#C16747] transition-all">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input type="text" placeholder="City" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3.5 outline-none focus:border-[#C16747] transition-all">
+                                    <input type="text" placeholder="ZIP Code" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3.5 outline-none focus:border-[#C16747] transition-all">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-600 mb-4">Delivery Option</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="flex items-center justify-between p-4 rounded-xl border-2 border-[#C16747] bg-[#C16747]/5 cursor-pointer">
+                                    <div class="flex items-center gap-3">
+                                        <input type="radio" name="delivery" checked class="w-4 h-4 accent-[#C16747]">
+                                        <span class="text-sm font-600">Standard</span>
+                                    </div>
+                                    <span class="text-xs font-600 text-stone-500">FREE</span>
+                                </label>
+                                <label class="flex items-center justify-between p-4 rounded-xl border border-stone-200 dark:border-stone-800 cursor-pointer hover:border-[#C16747]/50 transition-all">
+                                    <div class="flex items-center gap-3">
+                                        <input type="radio" name="delivery" class="w-4 h-4 accent-[#C16747]">
+                                        <span class="text-sm font-600">Express</span>
+                                    </div>
+                                    <span class="text-xs font-600 text-[#C16747]">+$15.00</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-600 mb-4">Payment Method</h3>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <button type="button" class="px-5 py-2.5 rounded-xl bg-stone-900 dark:bg-stone-700 text-white text-xs font-600">Card</button>
+                                <button type="button" class="px-5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-500 text-xs font-600">UPI</button>
+                                <button type="button" class="px-5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-500 text-xs font-600">Wallet</button>
+                            </div>
+                            <div class="space-y-4 p-5 bg-stone-50 dark:bg-stone-800/50 rounded-2xl border border-stone-100 dark:border-stone-700">
+                                <input type="text" placeholder="Card Number" class="w-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-sm outline-none">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input type="text" placeholder="MM/YY" class="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-sm outline-none">
+                                    <input type="password" placeholder="CVV" class="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-sm outline-none">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <textarea placeholder="Order notes or gift message 🎁" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-4 text-sm outline-none h-28 resize-none focus:border-[#C16747] transition-all"></textarea>
+                        </div>
+
+                        <div class="pt-8 border-t border-stone-100 dark:border-stone-800">
+                            <div class="flex flex-col gap-6">
+                                <div class="flex flex-wrap justify-center gap-4 text-[10px] uppercase tracking-[0.2em] text-stone-400 font-600 text-center">
+                                    <span><i class="fas fa-lock text-green-600 mr-1"></i> Secure Checkout</span>
+                                    <span class="hidden xs:inline">•</span>
+                                    <span>Fast Delivery</span>
+                                    <span class="hidden xs:inline">•</span>
+                                    <span>Easy Returns</span>
+                                </div>
+                                <button class="w-full py-5 bg-[#C16747] text-white rounded-2xl font-600 text-lg shadow-2xl shadow-[#C16747]/20 hover:opacity-95 active:scale-[0.98] transition-all">
+                                    Complete Order
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</section>
+    </div>
+</section>
+
+  <footer class="bg-stone-100 dark:bg-stone-950 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12">
+            
+            <div class="space-y-5">
+                <a href="index.html" class="inline-block">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white">
+                            <i class="fas fa-leaf text-sm"></i>
+                        </div>
+                        <span class="text-xl font-600 tracking-tight text-primary uppercase">Micro</span>
+                    </div>
+                </a>
+                <p class="text-stone-500 dark:text-stone-400 leading-relaxed text-sm font-400">
+                    Accessible indoor farming for every home. Sustainable, organic, and fast.
+                </p>
+                <div class="flex space-x-4 text-stone-400">
+                    <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="md:pl-4">
+                <h4 class="font-600 mb-5 uppercase text-xs tracking-[0.2em] text-stone-800 dark:text-stone-200">Quick Links</h4>
+                <ul class="space-y-3 text-sm text-stone-500 dark:text-stone-400 font-400">
+                    <li><a href="index.html" class="hover:text-primary transition">Home</a></li>
+                    <li><a href="home2.html" class="hover:text-primary transition">Home2</a></li>
+                    <li><a href="about.html" class="hover:text-primary transition">About</a></li>
+                    <li><a href="service.html" class="hover:text-primary transition">Service</a></li>
+                     <li><a href="blog.html" class="hover:text-primary transition">Blog</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-600 mb-5 uppercase text-xs tracking-[0.2em] text-stone-800 dark:text-stone-200">Shop</h4>
+                <ul class="space-y-3 text-sm text-stone-500 dark:text-stone-400 font-400">
+                    <li><a href="ordernow.html" class="hover:text-primary transition">Order Now</a></li>
+                    <li><a href="contact.html" class="hover:text-primary transition">Contact</a></li>
+                    <li><a href="404.html" class="hover:text-primary transition">404 Page</a></li>
+                    <li><a href="comingsoon.html" class="hover:text-primary transition">Coming Soon</a></li>
+                     <li><a href="community.html" class="hover:text-primary transition">Community</a></li>
+                </ul>
+            </div>
+
+            <div class="bg-white/50 dark:bg-stone-900/50 p-6 rounded-2xl border border-stone-200 dark:border-stone-800 h-fit">
+                <h4 class="font-600 mb-2 text-sm text-stone-800 dark:text-stone-100">Green Newsletter</h4>
+                <p class="text-xs text-stone-500 dark:text-stone-400 mb-4 font-400">Tips & 10% off your first kit.</p>
+                <form class="space-y-2">
+                    <input 
+                        type="email" 
+                        placeholder="Email address" 
+                        class="w-full px-4 py-2.5 text-xs bg-stone-100 dark:bg-stone-800 border-none rounded-lg focus:ring-1 focus:ring-primary outline-none text-stone-800 dark:text-stone-100"
+                        required
+                    >
+                    <button type="submit" class="w-full py-2.5 bg-primary text-white text-xs font-600 rounded-lg hover:opacity-90 transition-all active:scale-95 shadow-md shadow-primary/10">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="border-t border-stone-200 dark:border-stone-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-stone-400 text-[10px] uppercase tracking-widest font-500">
+            <p>© 2026 Micro Green. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-stone-600 dark:hover:text-stone-200">Privacy Policy</a>
+                <a href="#" class="hover:text-stone-600 dark:hover:text-stone-200">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+
+    <script>
+        // DOM Elements
+        const html = document.documentElement;
+        const darkToggle = document.getElementById('dark-toggle');
+        const darkToggleM = document.getElementById('dark-toggle-m');
+        const ltrToggle = document.getElementById('ltr-toggle');
+        const ltrToggleM = document.getElementById('ltr-toggle-m');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+        const closeMenu = document.getElementById('close-menu');
+
+        // Dark Mode Logic
+        function toggleDarkMode() {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // LTR/RTL Logic
+        function toggleDirection() {
+            const currentDir = html.getAttribute('dir');
+            const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+            html.setAttribute('dir', newDir);
+            localStorage.setItem('direction', newDir);
+            ltrToggle.innerText = newDir.toUpperCase();
+        }
+
+        // Initialize from LocalStorage
+        if (localStorage.getItem('theme') === 'dark') html.classList.add('dark');
+        if (localStorage.getItem('direction') === 'rtl') {
+            html.setAttribute('dir', 'rtl');
+            ltrToggle.innerText = 'RTL';
+        }
+
+        // Event Listeners
+        darkToggle.addEventListener('click', toggleDarkMode);
+        darkToggleM.addEventListener('click', toggleDarkMode);
+        ltrToggle.addEventListener('click', toggleDirection);
+        ltrToggleM.addEventListener('click', toggleDirection);
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileSidebar.classList.remove('hidden');
+            document.body.classList.add('mobile-menu-open');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileSidebar.classList.add('hidden');
+            document.body.classList.remove('mobile-menu-open');
+        });
+    </script>
+</body>
+</html>  

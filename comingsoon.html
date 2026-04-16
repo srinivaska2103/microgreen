@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍃</text></svg>">
+    <title>Coming Soon | MICRO Urban Farming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C16747',
+                        surface: '#111111',
+                    },
+                    screens: {
+                        'xs': '360px',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); }
+        .light .glass { background: rgba(0, 0, 0, 0.03); }
+    </style>
+</head>
+
+<body class="bg-stone-50 dark:bg-surface text-stone-900 dark:text-stone-200 min-h-screen transition-colors duration-500 overflow-x-hidden">
+
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-50">
+        <a href="index.html" class="flex items-center gap-2.5 group transition-transform active:scale-95">
+            <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                <i class="fas fa-leaf text-xl"></i>
+            </div>
+            <span class="text-xl font-600 tracking-tight text-primary uppercase">Micro</span>
+        </a>
+
+        <div class="flex items-center gap-3">
+            <button id="ltr-toggle" class="px-4 py-2 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full text-[10px] font-600 uppercase tracking-widest text-stone-500 hover:text-primary transition-all shadow-sm">LTR</button>
+            <button id="dark-toggle" class="w-10 h-10 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full flex items-center justify-center text-stone-500 hover:text-primary transition-all shadow-sm">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 text-center pt-20">
+        
+        <div class="max-w-4xl w-full space-y-12">
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 bg-primary/10 border border-primary/20 text-primary rounded-full font-600 text-xs tracking-[0.2em] uppercase">
+                <i class="fas fa-clock text-[10px] animate-pulse"></i> Launching Soon
+            </div>
+
+            <div class="space-y-4">
+                <h1 class="text-4xl xs:text-5xl md:text-7xl font-600 text-stone-900 dark:text-white leading-[1.1] tracking-tight">
+                    The Future of <br class="hidden md:block"> <span class="text-primary">Urban Farming</span>
+                </h1>
+                <p class="text-stone-600 dark:text-stone-400 font-400 text-base md:text-lg max-w-xl mx-auto">
+                    We are engineering a new way to grow gourmet greens in the heart of the city. Join the waitlist for exclusive early access.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <div class="glass border border-stone-200 dark:border-stone-800 p-6 rounded-3xl">
+                    <span id="days" class="block text-3xl md:text-4xl font-600 text-primary">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-stone-500 mt-1">Days</span>
+                </div>
+                <div class="glass border border-stone-200 dark:border-stone-800 p-6 rounded-3xl">
+                    <span id="hours" class="block text-3xl md:text-4xl font-600 text-stone-900 dark:text-white">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-stone-500 mt-1">Hours</span>
+                </div>
+                <div class="glass border border-stone-200 dark:border-stone-800 p-6 rounded-3xl">
+                    <span id="minutes" class="block text-3xl md:text-4xl font-600 text-stone-900 dark:text-white">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-stone-500 mt-1">Minutes</span>
+                </div>
+                <div class="glass border border-stone-200 dark:border-stone-800 p-6 rounded-3xl">
+                    <span id="seconds" class="block text-3xl md:text-4xl font-600 text-primary">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-stone-500 mt-1">Seconds</span>
+                </div>
+            </div>
+
+            <div class="max-w-md mx-auto pt-6">
+                <form class="relative group" onsubmit="return false;">
+                    <input type="email" placeholder="Enter your email address" 
+                        class="w-full pl-6 pr-36 py-5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all shadow-xl shadow-stone-200/50 dark:shadow-none placeholder:text-stone-400">
+                    <button class="absolute right-2 top-2 bottom-2 px-6 bg-primary text-white rounded-xl font-600 text-sm hover:opacity-90 active:scale-95 transition-all">
+                        Notify Me
+                    </button>
+                </form>
+                <p class="mt-4 text-[11px] text-stone-500 dark:text-stone-500 font-500 uppercase tracking-widest">
+                    <i class="fas fa-shield-check mr-1 text-primary"></i> No spam. Only fresh updates.
+                </p>
+            </div>
+        </div>
+
+        <footer class="mt-20 mb-8 flex flex-col items-center gap-6">
+            <div class="flex gap-8 text-stone-400 dark:text-stone-600 text-xl">
+                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="text-[10px] uppercase tracking-[0.4em] text-stone-400 font-600 opacity-60">© 2026 Vexa Tech Industries</p>
+        </footer>
+    </main>
+
+    <script>
+        // --- 1. COUNTDOWN LOGIC ---
+        function updateCountdown() {
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 30); // Set to 30 days from now
+
+            function refresh() {
+                const now = new Date().getTime();
+                const distance = launchDate - now;
+
+                document.getElementById('days').innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById('hours').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            }
+            setInterval(refresh, 1000);
+            refresh();
+        }
+
+        // --- 2. THEME & DIRECTION LOGIC ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const html = document.documentElement;
+            const darkBtn = document.getElementById('dark-toggle');
+            const ltrBtn = document.getElementById('ltr-toggle');
+
+            // Theme Persistence
+            if (localStorage.getItem('theme') === 'light') {
+                html.classList.remove('dark');
+            }
+            darkBtn.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            });
+
+            // Direction Persistence
+            const savedDir = localStorage.getItem('direction') || 'ltr';
+            html.setAttribute('dir', savedDir);
+            ltrBtn.innerText = savedDir.toUpperCase();
+            ltrBtn.addEventListener('click', () => {
+                const newDir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+                html.setAttribute('dir', newDir);
+                localStorage.setItem('direction', newDir);
+                ltrBtn.innerText = newDir.toUpperCase();
+            });
+
+            updateCountdown();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍃</text></svg>">
+    <title>404 | Page Not Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C16747',
+                        surface: '#111111',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-stone-50 dark:bg-surface text-stone-900 dark:text-stone-200 min-h-screen transition-colors duration-500 overflow-hidden">
+
+    <nav class="fixed top-0 left-0 p-8 z-50">
+        <a href="index.html" class="flex items-center gap-2.5 group transition-transform active:scale-95">
+            <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                <i class="fas fa-leaf text-xl"></i>
+            </div>
+            <span class="text-xl font-600 tracking-tight text-primary uppercase">Micro</span>
+        </a>
+    </nav>
+
+    <div class="fixed top-8 right-8 flex items-center gap-3 z-50">
+        <button id="ltr-toggle" class="px-4 py-2 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full text-[10px] font-600 uppercase tracking-widest text-stone-500 hover:text-primary transition-all shadow-sm">LTR</button>
+        <button id="dark-toggle" class="w-10 h-10 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full flex items-center justify-center text-stone-500 hover:text-primary transition-all shadow-sm">
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:block"></i>
+        </button>
+    </div>
+
+    <main class="relative min-h-screen flex flex-col items-center justify-center px-4 text-center">
+        
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+
+        <div class="relative z-10 space-y-8 max-w-2xl">
+            <div class="inline-block animate-float">
+                <div class="w-24 h-24 md:w-32 md:h-32 bg-stone-100 dark:bg-stone-900 rounded-[40px] border border-stone-200 dark:border-stone-800 flex items-center justify-center text-primary shadow-2xl">
+                    <i class="fas fa-seedling text-5xl md:text-6xl"></i>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h1 class="text-7xl md:text-9xl font-600 text-stone-900 dark:text-white tracking-tighter opacity-10 leading-none select-none">404</h1>
+                <h2 class="text-3xl md:text-5xl font-600 text-stone-900 dark:text-white leading-tight">
+                    Lost in the <span class="text-primary">Micro-Garden?</span>
+                </h2>
+                <p class="text-stone-600 dark:text-stone-400 font-400 text-base md:text-lg max-w-md mx-auto">
+                    The page you are looking for has either sprouted somewhere else or was never planted.
+                </p>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="index.html" class="w-full sm:w-auto px-10 py-4 bg-primary text-white rounded-2xl font-600 shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-3">
+                    <i class="fas fa-home text-sm"></i> Return Home
+                </a>
+                <button onclick="history.back()" class="w-full sm:w-auto px-10 py-4 border-2 border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 rounded-2xl font-600 hover:border-primary hover:text-primary active:scale-95 transition-all">
+                    Go Back
+                </button>
+            </div>
+        </div>
+
+        <p class="absolute bottom-12 left-0 w-full text-center text-[10px] uppercase tracking-[0.5em] text-stone-400 font-500 opacity-50">
+            Error Code: Resource_Not_Found
+        </p>
+    </main>
+
+    <script>
+        // --- Theme & Direction Persistence Logic ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const html = document.documentElement;
+            const darkBtn = document.getElementById('dark-toggle');
+            const ltrBtn = document.getElementById('ltr-toggle');
+
+            // 1. Theme (Dark/Light) Management
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                html.classList.remove('dark');
+            } else {
+                html.classList.add('dark'); // Default to dark as per urban-luxury theme
+            }
+
+            darkBtn.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            });
+
+            // 2. Direction (LTR/RTL) Management
+            const savedDir = localStorage.getItem('direction') || 'ltr';
+            html.setAttribute('dir', savedDir);
+            ltrBtn.innerText = savedDir.toUpperCase();
+
+            ltrBtn.addEventListener('click', () => {
+                const newDir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+                html.setAttribute('dir', newDir);
+                localStorage.setItem('direction', newDir);
+                ltrBtn.innerText = newDir.toUpperCase();
+            });
+        });
+    </script>
+</body>
+</html>

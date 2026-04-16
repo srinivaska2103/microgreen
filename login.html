@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍃</text></svg>">
+    <title>Login | MICRO Urban Farming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C16747',
+                        surface: '#111111',
+                    },
+                    screens: {
+                        'xs': '360px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .transition-all { transition: all 0.3s ease-in-out; }
+    </style>
+</head>
+
+<body class="bg-stone-50 dark:bg-surface text-stone-900 dark:text-stone-200 min-h-screen transition-colors duration-500">
+
+    <nav class="fixed top-0 w-full p-6 flex justify-between items-center z-50">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+            <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+                <i class="fas fa-leaf text-xl"></i>
+            </div>
+            <span class="text-xl font-600 tracking-tight text-primary uppercase">Micro</span>
+        </a>
+
+        <div class="flex items-center gap-3 bg-white dark:bg-stone-900 p-1.5 rounded-full border border-stone-200 dark:border-stone-800 shadow-sm">
+            <button id="ltr-toggle" class="px-4 py-1.5 text-[10px] font-600 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-all uppercase tracking-widest border border-transparent">LTR</button>
+            <button id="dark-toggle" class="p-2.5 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-all text-stone-500 dark:text-stone-400">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="flex items-center justify-center min-h-screen px-4 pt-20">
+        <div class="w-full max-w-[420px] bg-white dark:bg-stone-900/50 backdrop-blur-xl p-8 md:p-10 rounded-[32px] border border-stone-200 dark:border-stone-800 shadow-2xl shadow-stone-200/50 dark:shadow-none">
+            
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-600 text-stone-900 dark:text-white mb-2">Welcome Back</h1>
+                <p class="text-sm text-stone-500 dark:text-stone-400">Enter your credentials to manage your farm.</p>
+            </div>
+
+            <form class="space-y-6" onsubmit="return false;">
+                <div class="space-y-2">
+                    <label class="text-xs font-600 uppercase tracking-widest text-stone-500 ml-1">Email Address</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-4 flex items-center text-stone-400">
+                            <i class="fas fa-envelope text-sm"></i>
+                        </span>
+                        <input type="email" placeholder="name@company.com" 
+                            class="w-full pl-11 pr-4 py-4 bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 rounded-2xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-stone-400">
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-xs font-600 uppercase tracking-widest text-stone-500 ml-1">Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-4 flex items-center text-stone-400">
+                            <i class="fas fa-lock text-sm"></i>
+                        </span>
+                        <input type="password" id="password-input" placeholder="••••••••" 
+                            class="w-full pl-11 pr-12 py-4 bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 rounded-2xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-stone-400">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-4 flex items-center text-stone-400 hover:text-primary transition-colors">
+                            <i id="eye-icon" class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col xs:flex-row items-center justify-between gap-4 py-1">
+                    <label class="flex items-center gap-2.5 cursor-pointer group">
+                        <div class="relative flex items-center">
+                            <input type="checkbox" class="peer h-5 w-5 cursor-pointer appearance-none rounded-md border border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-800 checked:bg-primary checked:border-primary transition-all">
+                            <i class="fas fa-check absolute text-[10px] text-white opacity-0 peer-checked:opacity-100 left-1.5 transition-opacity"></i>
+                        </div>
+                        <span class="text-sm font-500 text-stone-600 dark:text-stone-400 group-hover:text-primary transition-colors">Remember me</span>
+                    </label>
+                    <a href="#" class="text-sm font-600 text-primary hover:opacity-80 transition-opacity">Forgot Password?</a>
+                </div>
+
+                <button class="w-full py-4 bg-primary text-white rounded-2xl font-600 shadow-xl shadow-primary/20 hover:opacity-95 active:scale-[0.98] transition-all">
+                    Sign In
+                </button>
+            </form>
+
+            <div class="mt-8">
+                <div class="relative flex items-center justify-center mb-8">
+                    <div class="w-full border-t border-stone-200 dark:border-stone-800"></div>
+                    <span class="absolute bg-white dark:bg-[#1c1c1c] px-4 text-[10px] uppercase tracking-[0.2em] text-stone-400 font-600">Or continue with</span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4">
+                    <button class="flex items-center justify-center py-3 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl hover:border-primary transition-all text-lg">
+                        <i class="fab fa-google"></i>
+                    </button>
+                    <button class="flex items-center justify-center py-3 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl hover:border-primary transition-all text-lg">
+                        <i class="fab fa-apple"></i>
+                    </button>
+                    <button class="flex items-center justify-center py-3 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl hover:border-primary transition-all text-lg">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                </div>
+            </div>
+
+            <p class="mt-10 text-center text-sm text-stone-500 dark:text-stone-400 font-500">
+                Don't have an account? 
+                <a href="regeister.html" class="text-primary font-600 hover:underline underline-offset-4 ml-1">Sign Up</a>
+            </p>
+        </div>
+    </main>
+
+    <script>
+        // --- 1. Password Visibility Toggle ---
+        function togglePasswordVisibility() {
+            const input = document.getElementById('password-input');
+            const icon = document.getElementById('eye-icon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        // --- 2. Theme & Direction Management ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const html = document.documentElement;
+            const darkBtn = document.getElementById('dark-toggle');
+            const ltrBtn = document.getElementById('ltr-toggle');
+
+            // Initialize Dark Mode
+            if (localStorage.getItem('theme') === 'light') {
+                html.classList.remove('dark');
+            }
+
+            darkBtn.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            });
+
+            // Initialize Direction (LTR/RTL)
+            const currentDir = localStorage.getItem('direction') || 'ltr';
+            html.setAttribute('dir', currentDir);
+            ltrBtn.innerText = currentDir.toUpperCase();
+
+            ltrBtn.addEventListener('click', () => {
+                const newDir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+                html.setAttribute('dir', newDir);
+                localStorage.setItem('direction', newDir);
+                ltrBtn.innerText = newDir.toUpperCase();
+            });
+        });
+    </script>
+</body>
+</html>

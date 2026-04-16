@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍃</text></svg>">
+    <title>Dashboard | MICRO Urban Farming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C16747',
+                        surface: '#0A0A0A',
+                    },
+                    screens: { 'xs': '360px' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .active-nav { background: #C16747; color: white !important; }
+    </style>
+</head>
+
+<body class="bg-stone-50 dark:bg-surface text-stone-900 dark:text-stone-200 transition-colors duration-500 overflow-x-hidden">
+
+
+
+<button onclick="toggleMobileMenu()" class="flex-1 px-4 py-4 flex flex-col items-center justify-center gap-1 text-stone-400 hover:text-[#C16747] transition-all lg:hidden">
+    <div id="menu-icon-wrapper" class="w-6 h-6 flex items-center justify-center transition-transform duration-300">
+        <i class="fas fa-bars text-lg"></i>
+    </div>
+    <span class="text-[10px] font-600 uppercase tracking-tighter">Menu</span>
+</button>
+
+<div id="mobile-drawer-overlay" 
+     onclick="toggleMobileMenu()" 
+     class="fixed inset-0 bg-stone-900/60 backdrop-blur-md z-[70] opacity-0 pointer-events-none transition-all duration-300 lg:hidden">
+</div>
+
+<aside id="mobile-drawer" 
+       class="fixed top-0 right-0 h-full w-[280px] xs:w-[320px] bg-white dark:bg-stone-900 z-[80] shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col">
+    <a href="index.html">
+        <div class="p-6 border-b border-stone-100 dark:border-stone-800 flex justify-between items-center">
+        <span class="text-sm font-600 uppercase tracking-widest text-[#C16747]">Account Menu</span>
+        <button onclick="toggleMobileMenu()" class="w-8 h-8 flex items-center justify-center rounded-full bg-stone-50 dark:bg-stone-800 text-stone-500 hover:text-red-500 transition-colors">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    </a>
+    
+
+    <nav class="flex-grow p-6 space-y-2 overflow-y-auto no-scrollbar">
+         <button onclick="switchTab('overview')"  class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="overview">
+            <i class="fas fa-box w-5 text-stone-400"></i> Dashboard
+        </button>
+         <button onclick="switchTab('subscription')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="subscription">
+            <i class="fas fa-box w-5 text-stone-400"></i> Subscriptions
+        </button>
+        <button onclick="switchTab('tracker')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="tracker">
+            <i class="fas fa-box w-5 text-stone-400"></i> Grow Tracker
+        </button>
+        <button onclick="switchTab('rewards')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="rewards">
+            <i class="fas fa-gift w-5 text-stone-400"></i> Rewards
+        </button>
+        <button onclick="switchTab('tutorials')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="tutorials">
+            <i class="fas fa-play-circle w-5 text-stone-400"></i> Tutorials
+        </button>
+        <button onclick="switchTab('settings')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="settings">
+            <i class="fas fa-cog w-5 text-stone-400"></i> Settings
+        </button>
+    </nav>
+
+    <div class="p-6 border-t border-stone-100 dark:border-stone-800 space-y-6">
+        <div class="flex items-center justify-between gap-4 p-2 bg-stone-50 dark:bg-stone-800 rounded-2xl">
+            <button id="ltr-toggle" class="flex-1 py-2 text-[10px] font-600 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-500 uppercase tracking-widest transition-all">LTR</button>
+            <button id="dark-toggle" class="px-4 py-2 text-stone-500 dark:text-stone-400 hover:text-[#C16747] transition-colors">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
+            </button>
+        </div>
+        <a href="login.html">
+ <button  class="w-full py-4 rounded-2xl bg-stone-100 dark:bg-stone-800 text-red-500 font-600 text-sm flex items-center justify-center gap-3 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+        </a>
+       
+    </div>
+</aside>
+
+<script>
+    // --- Toggle Mobile Menu ---
+    function toggleMobileMenu() {
+        const drawer = document.getElementById('mobile-drawer');
+        const overlay = document.getElementById('mobile-drawer-overlay');
+        const isOpening = drawer.classList.contains('translate-x-full');
+
+        if (isOpening) {
+            drawer.classList.remove('translate-x-full');
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+            drawer.classList.add('translate-x-full');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+        }
+    }
+
+    // --- Logout Action ---
+    function handleLogout() {
+        if(confirm("Are you sure you want to logout?")) {
+            window.location.href = 'login.html';
+        }
+    }
+
+    // --- Persistence & Initialization ---
+    document.addEventListener("DOMContentLoaded", () => {
+        const html = document.documentElement;
+        const darkBtn = document.getElementById('dark-toggle');
+        const ltrBtn = document.getElementById('ltr-toggle');
+
+        // Theme Persistence
+        if (localStorage.getItem('theme') === 'light') html.classList.remove('dark');
+        darkBtn.onclick = () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        };
+
+        // Direction (LTR/RTL) Persistence
+        const savedDir = localStorage.getItem('direction') || 'ltr';
+        html.setAttribute('dir', savedDir);
+        ltrBtn.innerText = savedDir.toUpperCase();
+        ltrBtn.onclick = () => {
+            const newDir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+            html.setAttribute('dir', newDir);
+            localStorage.setItem('direction', newDir);
+            ltrBtn.innerText = newDir.toUpperCase();
+        };
+    });
+</script>
+
+    <aside id="sidebar" class="fixed left-0 top-0 h-screen w-72 bg-white dark:bg-stone-900 border-r border-stone-200 dark:border-stone-800 z-50 transition-transform duration-300 -translate-x-full lg:translate-x-0">
+        <div class="p-8">
+            <a href="index.html" class="flex items-center gap-3 mb-12">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white"><i class="fas fa-leaf text-xl"></i></div>
+                <span class="text-xl font-600 tracking-tight text-primary uppercase">Micro</span>
+            </a>
+
+            <nav class="space-y-2">
+                <button onclick="switchTab('overview')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="overview">
+                    <i class="fas fa-th-large w-5"></i> Dashboard
+                </button>
+                <button onclick="switchTab('subscription')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="subscription">
+                    <i class="fas fa-calendar-check w-5"></i> Subscriptions
+                </button>
+                <button onclick="switchTab('tracker')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="tracker">
+                    <i class="fas fa-seedling w-5"></i> Grow Tracker
+                </button>
+                <button onclick="switchTab('orders')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="orders">
+                    <i class="fas fa-box w-5"></i> Orders
+                </button>
+                <button onclick="switchTab('tutorials')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="tutorials">
+                    <i class="fas fa-play-circle w-5"></i> Tutorials
+                </button>
+                <button onclick="switchTab('rewards')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="rewards">
+                    <i class="fas fa-gift w-5"></i> Rewards
+                </button>
+                <button onclick="switchTab('settings')" class="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-stone-500 hover:text-primary transition-all font-500 sidebar-btn" data-tab="settings">
+                    <i class="fas fa-cog w-5"></i> Settings
+                </button>
+                <a href="login.html">
+ <button  class="w-full py-4 rounded-2xl bg-stone-100 dark:bg-stone-800 text-red-500 font-600 text-sm flex items-center justify-center gap-3 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+                </a>
+                
+            </nav>
+
+            <div class="absolute bottom-8 left-8 right-8">
+                <div class="flex items-center gap-3 p-4 bg-stone-50 dark:bg-stone-800 rounded-2xl border border-stone-200 dark:border-stone-700">
+                    <button id="ltr-toggle" class="px-3 py-1 text-[10px] font-600 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-full text-stone-400">LTR</button>
+                    <button id="dark-toggle" class="p-2 text-stone-400 hover:text-primary"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i></button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="lg:ml-72 min-h-screen p-4 md:p-8 pb-32 lg:pb-8">
+        
+        <header class="flex justify-between items-center mb-8">
+            <h2 id="current-tab-title" class="text-2xl font-600 text-stone-900 dark:text-white">Overview</h2>
+            <div class="flex items-center gap-4">
+                <button class="w-10 h-10 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 flex items-center justify-center text-stone-500 relative">
+                    <i class="fas fa-bell"></i>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+                </button>
+                <img src="assets/t3" class="w-10 h-10 rounded-full border border-primary">
+            </div>
+        </header>
+
+       <div id="overview" class="tab-content space-y-8 animate-in fade-in duration-500">
+    
+    <div class="p-8 md:p-10 rounded-[32px] bg-primary text-white shadow-2xl shadow-primary/20 relative overflow-hidden group">
+        <div class="relative z-10">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-600 uppercase tracking-widest">Active Season</span>
+            </div>
+            <h3 class="text-3xl md:text-4xl font-600 mb-2">Welcome back, Srinivas 👋</h3>
+            <p class="text-white/80 max-w-md leading-relaxed">
+                Your micro-greens are currently 4 days into their growth cycle. <span class="text-white font-600 underline underline-offset-4">Harvest is estimated in 3 days.</span>
+            </p>
+        </div>
+        <i class="fas fa-seedling absolute -right-4 -bottom-4 text-9xl text-white/10 rotate-12 group-hover:rotate-0 transition-transform duration-700"></i>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div class="p-6 rounded-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-primary transition-colors">
+            <i class="fas fa-box-open text-primary mb-4 text-xl"></i>
+            <p class="text-2xl font-600 text-stone-900 dark:text-white">03</p>
+            <p class="text-[10px] text-stone-500 uppercase tracking-widest font-700">Active Kits</p>
+        </div>
+        <div class="p-6 rounded-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-primary transition-colors">
+            <i class="fas fa-truck text-primary mb-4 text-xl"></i>
+            <p class="text-2xl font-600 text-stone-900 dark:text-white">12</p>
+            <p class="text-[10px] text-stone-500 uppercase tracking-widest font-700">Shipments</p>
+        </div>
+        <div class="p-6 rounded-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-primary transition-colors">
+            <i class="fas fa-check-circle text-primary mb-4 text-xl"></i>
+            <p class="text-2xl font-600 text-stone-900 dark:text-white">42</p>
+            <p class="text-[10px] text-stone-500 uppercase tracking-widest font-700">Harvests</p>
+        </div>
+        <div class="p-6 rounded-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-primary transition-colors">
+            <i class="fas fa-star text-primary mb-4 text-xl"></i>
+            <p class="text-2xl font-600 text-stone-900 dark:text-white">850</p>
+            <p class="text-[10px] text-stone-500 uppercase tracking-widest font-700">Vexa Points</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <div class="lg:col-span-2 p-8 rounded-[32px] bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+            <div class="flex justify-between items-center mb-8">
+                <h4 class="font-600 text-stone-900 dark:text-white">Yield Activity</h4>
+                <select class="bg-transparent text-xs font-600 text-stone-400 outline-none">
+                    <option>Last 7 Days</option>
+                    <option>Last 30 Days</option>
+                </select>
+            </div>
+            <div class="flex items-end justify-between h-48 gap-2">
+                <div class="flex-1 bg-stone-100 dark:bg-stone-800 rounded-t-lg h-[40%] hover:bg-primary/50 transition-all cursor-help relative group">
+                    <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-stone-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Mon</span>
+                </div>
+                <div class="flex-1 bg-stone-100 dark:bg-stone-800 rounded-t-lg h-[65%] hover:bg-primary/50 transition-all"></div>
+                <div class="flex-1 bg-stone-100 dark:bg-stone-800 rounded-t-lg h-[45%] hover:bg-primary/50 transition-all"></div>
+                <div class="flex-1 bg-primary rounded-t-lg h-[90%] transition-all"></div>
+                <div class="flex-1 bg-stone-100 dark:bg-stone-800 rounded-t-lg h-[30%] hover:bg-primary/50 transition-all"></div>
+                <div class="flex-1 bg-stone-100 dark:bg-stone-800 rounded-t-lg h-[55%] hover:bg-primary/50 transition-all"></div>
+                <div class="flex-1 bg-stone-100 dark:bg-stone-800 rounded-t-lg h-[75%] hover:bg-primary/50 transition-all"></div>
+            </div>
+        </div>
+
+        <div class="p-8 rounded-[32px] bg-stone-900 text-white relative overflow-hidden">
+            <h4 class="font-600 mb-6 relative z-10">Kit Health</h4>
+            <div class="space-y-6 relative z-10">
+                <div class="space-y-2">
+                    <div class="flex justify-between text-xs"><span>Hydration</span><span class="text-primary">Optimal</span></div>
+                    <div class="h-1.5 w-full bg-stone-800 rounded-full"><div class="h-full bg-primary w-[88%]"></div></div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between text-xs"><span>Nutrients</span><span>Good</span></div>
+                    <div class="h-1.5 w-full bg-stone-800 rounded-full"><div class="h-full bg-stone-400 w-[65%]"></div></div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between text-xs"><span>LED Intensity</span><span>100%</span></div>
+                    <div class="h-1.5 w-full bg-stone-800 rounded-full"><div class="h-full bg-white w-full"></div></div>
+                </div>
+            </div>
+            <i class="fas fa-heart-pulse absolute -right-8 -top-8 text-8xl text-white/5"></i>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="p-8 rounded-[32px] bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+            <h4 class="font-600 text-stone-900 dark:text-white mb-6">Recent Activity</h4>
+            <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs"><i class="fas fa-check"></i></div>
+                    <div>
+                        <p class="text-sm font-600">Harvest Completed</p>
+                        <p class="text-[10px] text-stone-500 uppercase">2 days ago • Radish Mix</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs"><i class="fas fa-truck-fast"></i></div>
+                    <div>
+                        <p class="text-sm font-600">New Seeds Dispatched</p>
+                        <p class="text-[10px] text-stone-500 uppercase">Yesterday • Express Delivery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 xs:grid-cols-2 gap-4">
+            <button class="p-6 rounded-[32px] border border-stone-200 dark:border-stone-800 text-sm font-600 hover:border-primary hover:text-primary transition-all flex flex-col items-center justify-center gap-3">
+                <i class="fas fa-pause-circle text-xl"></i>
+                Pause Subscription
+            </button>
+            <button class="p-6 rounded-[32px] border border-stone-200 dark:border-stone-800 text-sm font-600 hover:border-primary hover:text-primary transition-all flex flex-col items-center justify-center gap-3">
+                <i class="fas fa-forward-step text-xl"></i>
+                Skip Next Delivery
+            </button>
+            <button class="p-6 bg-stone-900 dark:bg-white dark:text-stone-900 text-white rounded-[32px] text-sm font-600 shadow-xl shadow-stone-900/10 md:col-span-2 flex items-center justify-center gap-3">
+                <i class="fas fa-plus"></i>
+                Order Seed Refills
+            </button>
+        </div>
+    </div>
+
+</div>
+
+        <div id="subscription" class="tab-content hidden space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    
+    <div class="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[40px] p-6 md:p-10 shadow-xl shadow-stone-200/20 dark:shadow-none">
+        <div class="flex flex-col lg:flex-row justify-between items-start gap-8">
+            <div class="space-y-4 w-full">
+                <div class="flex items-center gap-3">
+                    <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-[10px] font-700 rounded-full uppercase tracking-widest">Active</span>
+                    <span class="text-stone-400 text-[10px] font-600 uppercase tracking-widest">Premium Tier</span>
+                </div>
+                <h3 class="text-3xl font-600 text-stone-900 dark:text-white">Gourmet Weekly Plan</h3>
+                <div class="flex flex-wrap gap-6 text-sm text-stone-500">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-truck-clock text-primary"></i>
+                        Next delivery: <span class="font-600 text-stone-900 dark:text-stone-200">April 22, 2026</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-credit-card text-primary"></i>
+                        Billing: <span class="font-600 text-stone-900 dark:text-stone-200">$24.00 / week</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3 w-full lg:w-auto pt-4 lg:pt-0 border-t lg:border-t-0 border-stone-100 dark:border-stone-800">
+                <button title="Pause" class="flex-1 lg:flex-none h-14 px-6 border border-stone-200 dark:border-stone-800 rounded-2xl flex items-center justify-center gap-2 text-stone-600 dark:text-stone-400 hover:border-primary hover:text-primary transition-all group">
+                    <i class="fas fa-pause text-xs"></i> <span class="lg:hidden text-xs font-600 uppercase">Pause</span>
+                </button>
+                <button title="Skip Next" class="flex-1 lg:flex-none h-14 px-6 border border-stone-200 dark:border-stone-800 rounded-2xl flex items-center justify-center gap-2 text-stone-600 dark:text-stone-400 hover:border-primary hover:text-primary transition-all">
+                    <i class="fas fa-forward-step text-xs"></i> <span class="lg:hidden text-xs font-600 uppercase">Skip</span>
+                </button>
+                <button class="flex-1 lg:flex-none h-14 px-8 bg-stone-900 dark:bg-white text-white dark:text-stone-900 rounded-2xl font-600 text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                    <i class="fas fa-edit text-xs"></i> Edit Plan
+                </button>
+            </div>
+        </div>
+
+        <div class="mt-12 pt-10 border-t border-stone-100 dark:border-stone-800">
+            <h4 class="text-xs font-700 uppercase tracking-[0.2em] text-stone-400 mb-6">Included in this delivery</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="p-4 rounded-2xl bg-stone-50 dark:bg-stone-800/50 flex items-center gap-4 border border-stone-100 dark:border-stone-700">
+                    <div class="w-12 h-12 rounded-xl bg-white dark:bg-stone-900 flex items-center justify-center text-primary border border-stone-200 dark:border-stone-700">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-600">Radish Micro-Mix</p>
+                        <p class="text-[10px] text-stone-500">2x Seed Refill Packs</p>
+                    </div>
+                </div>
+                <div class="p-4 rounded-2xl bg-stone-50 dark:bg-stone-800/50 flex items-center gap-4 border border-stone-100 dark:border-stone-700">
+                    <div class="w-12 h-12 rounded-xl bg-white dark:bg-stone-900 flex items-center justify-center text-primary border border-stone-200 dark:border-stone-700">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-600">Pea Shoots</p>
+                        <p class="text-[10px] text-stone-500">1x Heirloom Variety</p>
+                    </div>
+                </div>
+                <div class="p-4 rounded-2xl bg-stone-50 dark:bg-stone-800/50 flex items-center gap-4 border border-stone-100 dark:border-stone-700">
+                    <div class="w-12 h-12 rounded-xl bg-white dark:bg-stone-900 flex items-center justify-center text-primary border border-stone-200 dark:border-stone-700">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-600">Liquid Nutrients</p>
+                        <p class="text-[10px] text-stone-500">Eco-Refill Bottle</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="p-8 rounded-[40px] bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+            <h4 class="font-600 mb-6 flex justify-between items-center">
+                Enhance Your Grow
+                <span class="text-xs text-primary underline cursor-pointer">View All</span>
+            </h4>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between p-4 rounded-2xl hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-stone-500"><i class="fas fa-plus"></i></div>
+                        <div>
+                            <p class="text-sm font-600 text-stone-900 dark:text-white">Extra Grow Pad</p>
+                            <p class="text-xs text-stone-500">+$4.00 per month</p>
+                        </div>
+                    </div>
+                    <button class="w-8 h-8 rounded-full border border-stone-200 dark:border-stone-700 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all"><i class="fas fa-plus text-[10px]"></i></button>
+                </div>
+                <div class="flex items-center justify-between p-4 rounded-2xl hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-stone-500"><i class="fas fa-bolt"></i></div>
+                        <div>
+                            <p class="text-sm font-600 text-stone-900 dark:text-white">Smart LED Boost</p>
+                            <p class="text-xs text-stone-500">Pro features +$2.00</p>
+                        </div>
+                    </div>
+                    <button class="w-8 h-8 rounded-full border border-stone-200 dark:border-stone-700 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all"><i class="fas fa-plus text-[10px]"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-8 rounded-[40px] bg-stone-50 dark:bg-stone-800/30 border border-dashed border-stone-300 dark:border-stone-700 flex flex-col justify-center items-center text-center space-y-4">
+            <div class="w-16 h-16 rounded-full bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-500">
+                <i class="fas fa-shield-halved text-xl"></i>
+            </div>
+            <h4 class="font-600 text-stone-900 dark:text-white">Subscription Management</h4>
+            <p class="text-sm text-stone-500 max-w-xs">Need a break or want to change your commitment? You can cancel or pause anytime without hidden fees.</p>
+            <button class="text-xs font-700 text-stone-400 hover:text-red-500 uppercase tracking-widest transition-colors">Cancel Subscription</button>
+        </div>
+    </div>
+
+</div>
+
+      <div id="tracker" class="tab-content hidden space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    
+    <div class="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[40px] p-6 md:p-10 shadow-xl shadow-stone-200/20 dark:shadow-none">
+        <div class="flex flex-col md:flex-row justify-between items-start mb-12 gap-4">
+            <div>
+                <h4 class="text-2xl font-600 text-stone-900 dark:text-white">Batch #102: <span class="text-primary italic">Spicy Radish Mix</span></h4>
+                <p class="text-sm text-stone-500 mt-1">Planted on April 11, 2026</p>
+            </div>
+            <div class="flex items-center gap-2 bg-stone-50 dark:bg-stone-800 px-4 py-2 rounded-full border border-stone-100 dark:border-stone-700">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                <span class="text-[11px] font-700 uppercase tracking-widest text-primary">Day 4 of 7</span>
+            </div>
+        </div>
+
+        <div class="relative px-2">
+            <div class="relative h-2.5 bg-stone-100 dark:bg-stone-800 rounded-full mb-16">
+                <div class="absolute inset-y-0 left-0 bg-primary rounded-full transition-all duration-1000 shadow-[0_0_15px_rgba(193,103,71,0.4)]" style="width: 57%;"></div>
+                
+                <div class="absolute -top-1.5 left-0 flex flex-col items-center">
+                    <div class="w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-stone-900 shadow-sm"></div>
+                    <span class="text-[10px] mt-3 font-700 uppercase tracking-tighter text-stone-400">Day 1: Seed</span>
+                </div>
+
+                <div class="absolute -top-1.5 left-[57%] flex flex-col items-center">
+                    <div class="w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-stone-900 animate-pulse"></div>
+                    <span class="text-[10px] mt-3 font-700 uppercase tracking-tighter text-primary">Day 4: Sprouting</span>
+                </div>
+
+                <div class="absolute -top-1.5 right-0 flex flex-col items-center">
+                    <div class="w-5 h-5 rounded-full bg-stone-200 dark:bg-stone-700 border-4 border-white dark:border-stone-900"></div>
+                    <span class="text-[10px] mt-3 font-700 uppercase tracking-tighter text-stone-400">Day 7: Harvest</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-5 bg-primary/5 border border-primary/20 rounded-[24px] flex flex-col sm:flex-row items-center gap-4 group hover:bg-primary/10 transition-all cursor-pointer">
+            <div class="w-12 h-12 rounded-2xl bg-white dark:bg-stone-900 flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform">
+                <i class="fas fa-droplet animate-bounce"></i>
+            </div>
+            <div class="text-center sm:text-left">
+                <p class="text-sm font-600 text-stone-900 dark:text-white">Hydration Needed</p>
+                <p class="text-xs text-stone-500">Your tray needs 50ml of water to reach optimal growth today.</p>
+            </div>
+            <button class="sm:ml-auto px-5 py-2.5 bg-primary text-white text-[11px] font-700 rounded-xl uppercase tracking-widest shadow-lg shadow-primary/20">Mark as Done</button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 space-y-6">
+            <div class="flex justify-between items-center">
+                <h5 class="text-sm font-700 uppercase tracking-[0.2em] text-stone-400">Progress Gallery</h5>
+                <button class="text-xs font-600 text-primary hover:underline">+ Upload Daily Photo</button>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <div class="aspect-square rounded-3xl bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 overflow-hidden relative group">
+                    <img src="assets/cart5" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                    <span class="absolute bottom-2 left-2 text-[8px] font-700 text-white bg-black/40 px-2 py-1 rounded-md uppercase">Day 1</span>
+                </div>
+                <div class="aspect-square rounded-3xl bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 overflow-hidden relative group">
+                    <img src="assets/cart8" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                    <span class="absolute bottom-2 left-2 text-[8px] font-700 text-white bg-black/40 px-2 py-1 rounded-md uppercase">Day 3</span>
+                </div>
+                <div class="aspect-square rounded-3xl border-2 border-dashed border-stone-200 dark:border-stone-800 flex flex-col items-center justify-center text-stone-400 hover:border-primary hover:text-primary transition-all cursor-pointer">
+                    <i class="fas fa-camera text-xl mb-2"></i>
+                    <span class="text-[9px] font-700 uppercase">Today</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-8 rounded-[40px] bg-stone-900 text-white relative overflow-hidden flex flex-col justify-between">
+            <div class="relative z-10">
+                <h5 class="text-[10px] font-700 uppercase tracking-[0.3em] text-white/40 mb-8">System Environment</h5>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <p class="text-xs text-white/50 mb-1">Temperature</p>
+                            <p class="text-2xl font-600">24.5°C</p>
+                        </div>
+                        <div class="w-16 h-8 bg-white/5 rounded-lg flex items-center justify-center text-xs text-green-400">Stable</div>
+                    </div>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <p class="text-xs text-white/50 mb-1">Light Intesity</p>
+                            <p class="text-2xl font-600">920lx</p>
+                        </div>
+                        <div class="w-16 h-8 bg-white/5 rounded-lg flex items-center justify-center text-xs text-primary font-600 underline">High</div>
+                    </div>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <p class="text-xs text-white/50 mb-1">pH Level</p>
+                            <p class="text-2xl font-600">6.2</p>
+                        </div>
+                        <div class="w-16 h-8 bg-white/5 rounded-lg flex items-center justify-center text-xs text-green-400">Perfect</div>
+                    </div>
+                </div>
+            </div>
+            <i class="fas fa-microchip absolute -right-6 -bottom-6 text-9xl text-white/5 -rotate-12"></i>
+        </div>
+    </div>
+    
+
+</div>
+<div id="orders" class="tab-content hidden space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    
+    <div class="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[40px] p-6 md:p-10 shadow-xl shadow-stone-200/20 dark:shadow-none relative overflow-hidden">
+        <div class="flex flex-col lg:flex-row justify-between items-start gap-8 relative z-10">
+            <div class="space-y-4 w-full">
+                <div class="flex items-center gap-3">
+                    <span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-700 rounded-full uppercase tracking-widest flex items-center gap-2">
+                        <i class="fas fa-truck-fast animate-pulse"></i> In Transit
+                    </span>
+                    <span class="text-stone-400 text-[10px] font-600 uppercase tracking-widest">Order #VX-99201</span>
+                </div>
+                <h3 class="text-3xl font-600 text-stone-900 dark:text-white">Summer Greens Refill <span class="text-primary italic">+ Kit Boost</span></h3>
+                <div class="flex flex-wrap gap-6 text-sm text-stone-500">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-calendar text-primary"></i>
+                        Ordered: <span class="font-600 text-stone-900 dark:text-stone-200">April 12, 2026</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-location-dot text-primary"></i>
+                        Destination: <span class="font-600 text-stone-900 dark:text-stone-200">Srinivas K A</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-72 bg-stone-50 dark:bg-stone-800/50 p-6 rounded-3xl border border-stone-100 dark:border-stone-700">
+                <p class="text-[10px] font-700 uppercase tracking-widest text-stone-400 mb-4">Live Tracking</p>
+                <div class="space-y-4">
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                            <div class="w-[1px] h-full bg-primary/30"></div>
+                        </div>
+                        <div class="pb-2">
+                            <p class="text-xs font-600 dark:text-white">Arrived at Local Facility</p>
+                            <p class="text-[10px] text-stone-400 italic">2 hours ago</p>
+                        </div>
+                    </div>
+                    <button class="w-full py-3 bg-stone-900 dark:bg-white text-white dark:text-stone-900 rounded-xl text-[11px] font-700 uppercase tracking-widest hover:opacity-90 transition-all">
+                        View Map
+                    </button>
+                </div>
+            </div>
+        </div>
+        <i class="fas fa-box-archive absolute -right-6 -top-6 text-9xl text-stone-50 dark:text-white/5 -rotate-12 pointer-events-none"></i>
+    </div>
+
+    <div class="space-y-6">
+        <div class="flex justify-between items-center px-2">
+            <h5 class="text-sm font-700 uppercase tracking-[0.2em] text-stone-400">Order History</h5>
+            <div class="flex gap-2">
+                <button class="p-2 text-stone-400 hover:text-primary transition-colors"><i class="fas fa-filter"></i></button>
+                <button class="p-2 text-stone-400 hover:text-primary transition-colors"><i class="fas fa-download"></i></button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4">
+            <div class="group bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 p-6 rounded-[32px] flex flex-col md:flex-row items-center justify-between gap-6 hover:border-primary/50 transition-all">
+                <div class="flex items-center gap-6 w-full md:w-auto">
+                    <div class="w-16 h-16 rounded-2xl bg-stone-50 dark:bg-stone-800 flex items-center justify-center text-primary border border-stone-100 dark:border-stone-700 group-hover:bg-primary/5 transition-colors">
+                        <i class="fas fa-seedling text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-600 text-stone-900 dark:text-white">Starter Microgreen Kit</h4>
+                        <p class="text-xs text-stone-500">VX-88120 • Delivered April 02, 2026</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between w-full md:w-auto md:gap-12 pt-4 md:pt-0 border-t md:border-t-0 border-stone-100 dark:border-stone-800">
+                    <div class="text-center md:text-right">
+                        <p class="text-xs text-stone-400 font-600 uppercase mb-1">Total</p>
+                        <p class="font-600 text-stone-900 dark:text-white">$149.00</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button title="Download Invoice" class="w-10 h-10 rounded-xl border border-stone-200 dark:border-stone-800 flex items-center justify-center text-stone-400 hover:text-primary hover:border-primary transition-all">
+                            <i class="fas fa-file-invoice"></i>
+                        </button>
+                        <button class="px-6 py-2.5 bg-stone-50 dark:bg-stone-800 text-stone-900 dark:text-white rounded-xl text-[11px] font-700 uppercase tracking-widest hover:bg-primary hover:text-white transition-all">
+                            Reorder
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 p-6 rounded-[32px] flex flex-col md:flex-row items-center justify-between gap-6 hover:border-primary/50 transition-all opacity-80">
+                <div class="flex items-center gap-6 w-full md:w-auto">
+                    <div class="w-16 h-16 rounded-2xl bg-stone-50 dark:bg-stone-800 flex items-center justify-center text-primary border border-stone-100 dark:border-stone-700">
+                        <i class="fas fa-flask text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-600 text-stone-900 dark:text-white">Nutrient Refill Pack</h4>
+                        <p class="text-xs text-stone-500">VX-87551 • Delivered March 15, 2026</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between w-full md:w-auto md:gap-12 pt-4 md:pt-0 border-t md:border-t-0 border-stone-100 dark:border-stone-800">
+                    <div class="text-center md:text-right">
+                        <p class="text-xs text-stone-400 font-600 uppercase mb-1">Total</p>
+                        <p class="font-600 text-stone-900 dark:text-white">$24.00</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="w-10 h-10 rounded-xl border border-stone-200 dark:border-stone-800 flex items-center justify-center text-stone-400">
+                            <i class="fas fa-file-invoice"></i>
+                        </button>
+                        <button class="px-6 py-2.5 bg-stone-50 dark:bg-stone-800 text-stone-900 dark:text-white rounded-xl text-[11px] font-700 uppercase tracking-widest hover:bg-primary hover:text-white transition-all">
+                            Reorder
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-8 rounded-[40px] bg-stone-50 dark:bg-stone-800/30 border border-stone-200 dark:border-stone-700 flex flex-col md:flex-row items-center gap-6">
+        <div class="w-14 h-14 rounded-2xl bg-white dark:bg-stone-900 flex items-center justify-center text-primary shadow-sm">
+            <i class="fas fa-headset text-xl"></i>
+        </div>
+        <div class="text-center md:text-left flex-grow">
+            <h5 class="font-600 text-stone-900 dark:text-white">Issue with an order?</h5>
+            <p class="text-sm text-stone-500">Our support team is available 24/7 to help with shipping or quality concerns.</p>
+        </div>
+        <button class="px-8 py-3 border-2 border-stone-200 dark:border-stone-700 rounded-2xl text-[11px] font-700 uppercase tracking-widest text-stone-600 dark:text-stone-300 hover:border-primary hover:text-primary transition-all">
+            Open Support Ticket
+        </button>
+    </div>
+
+</div>
+<div id="tutorials" class="tab-content hidden space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    
+    <div class="group relative rounded-[40px] overflow-hidden bg-stone-900 aspect-video md:aspect-[21/9] shadow-2xl">
+        <img src="assets/indexhero2" 
+             class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/20 to-transparent flex flex-col justify-end p-6 md:p-12">
+            <div class="relative z-10 space-y-4">
+                <span class="px-3 py-1 bg-primary text-white text-[10px] font-700 rounded-full uppercase tracking-widest">Masterclass</span>
+                <h3 class="text-3xl md:text-5xl font-600 text-white leading-tight">Gourmet Growth <br> <span class="italic text-primary">in 7 Days.</span></h3>
+                <p class="text-stone-300 text-sm md:text-base max-w-lg">The complete visual guide to setting up your Vexa system for maximum nutrient density.</p>
+                
+                <button class="flex items-center gap-3 text-white font-600 group/btn">
+                    <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center group-hover/btn:scale-110 transition-transform">
+                        <i class="fas fa-play ml-1 text-sm"></i>
+                    </div>
+                    <span class="text-sm uppercase tracking-widest">Start Learning</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+        <button class="px-6 py-2.5 bg-primary text-white rounded-xl text-xs font-600 whitespace-nowrap">All Guides</button>
+        <button class="px-6 py-2.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl text-xs font-600 text-stone-500 whitespace-nowrap hover:border-primary transition-colors">Setup</button>
+        <button class="px-6 py-2.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl text-xs font-600 text-stone-500 whitespace-nowrap hover:border-primary transition-colors">Harvesting</button>
+        <button class="px-6 py-2.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl text-xs font-600 text-stone-500 whitespace-nowrap hover:border-primary transition-colors">Maintenance</button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="group bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[32px] overflow-hidden hover:border-primary/50 transition-all flex flex-col">
+            <div class="aspect-video relative overflow-hidden">
+                <img src="assets/tutorial1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="fas fa-play text-white text-3xl"></i>
+                </div>
+                <span class="absolute bottom-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-md text-[10px] text-white rounded-md font-600">04:12</span>
+            </div>
+            <div class="p-6 space-y-3 flex-grow">
+                <h4 class="font-600 text-stone-900 dark:text-white group-hover:text-primary transition-colors">Automating Your Lighting</h4>
+                <p class="text-xs text-stone-500 leading-relaxed">Learn how to program the Smart LED cycles for optimal photosynthesis in low-light apartments.</p>
+                <div class="pt-4 flex items-center justify-between">
+                    <span class="text-[10px] font-700 text-stone-400 uppercase tracking-widest">Level: Beginner</span>
+                    <i class="fas fa-plus text-stone-300 group-hover:text-primary cursor-pointer transition-colors"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="group bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[32px] overflow-hidden hover:border-primary/50 transition-all flex flex-col">
+            <div class="aspect-video relative overflow-hidden">
+                <img src="assets/remium Indoor Grow Kit in Minimal Setup" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="fas fa-play text-white text-3xl"></i>
+                </div>
+                <span class="absolute bottom-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-md text-[10px] text-white rounded-md font-600">06:45</span>
+            </div>
+            <div class="p-6 space-y-3 flex-grow">
+                <h4 class="font-600 text-stone-900 dark:text-white group-hover:text-primary transition-colors">The Perfect Harvest</h4>
+                <p class="text-xs text-stone-500 leading-relaxed">Techniques for clean-cutting your microgreens to ensure maximum shelf life and presentation.</p>
+                <div class="pt-4 flex items-center justify-between">
+                    <span class="text-[10px] font-700 text-stone-400 uppercase tracking-widest">Level: Pro</span>
+                    <i class="fas fa-plus text-stone-300 group-hover:text-primary cursor-pointer transition-colors"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-8 rounded-[32px] bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 flex flex-col justify-between">
+            <div>
+                <div class="w-12 h-12 rounded-2xl bg-white dark:bg-stone-900 flex items-center justify-center text-primary mb-6 shadow-sm">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h4 class="text-xl font-600 text-stone-900 dark:text-white mb-2">Grow Manual (PDF)</h4>
+                <p class="text-xs text-stone-500 leading-relaxed italic">Comprehensive documentation on seed varieties, pH balance, and troubleshooting common growth stalls.</p>
+            </div>
+            <button class="w-full mt-8 py-3 bg-transparent border-2 border-stone-200 dark:border-stone-700 rounded-xl text-[11px] font-700 uppercase tracking-widest text-stone-600 dark:text-stone-300 hover:border-primary hover:text-primary transition-all">
+                Download Guide
+            </button>
+        </div>
+
+    </div>
+
+    <div class="p-8 rounded-[40px] bg-stone-900 text-white flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        <div class="relative z-10 text-center md:text-left">
+            <h4 class="text-xl font-600">Still have questions?</h4>
+            <p class="text-white/50 text-sm">Search our 200+ article knowledge base.</p>
+        </div>
+        <div class="relative z-10 w-full md:w-auto flex-grow max-w-md">
+            <input type="text" placeholder="Search keywords..." class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-sm outline-none focus:border-primary transition-all">
+            <i class="fas fa-search absolute right-6 top-1/2 -translate-y-1/2 text-white/30"></i>
+        </div>
+        <i class="fas fa-lightbulb absolute -right-4 -top-4 text-7xl text-white/5 rotate-12"></i>
+    </div>
+
+</div>
+<div id="rewards" class="tab-content hidden space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 p-8 md:p-10 rounded-[40px] bg-stone-900 text-white relative overflow-hidden flex flex-col justify-between">
+            <div class="relative z-10 flex justify-between items-start">
+                <div class="space-y-1">
+                    <span class="text-[10px] font-700 uppercase tracking-[0.3em] text-white/40">Total Balance</span>
+                    <h3 class="text-5xl md:text-6xl font-600 tracking-tighter">850 <span class="text-primary">pts</span></h3>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-primary border border-white/10">
+                    <i class="fas fa-crown"></i>
+                </div>
+            </div>
+
+            <div class="relative z-10 mt-12 space-y-4">
+                <div class="flex justify-between items-end text-xs font-600">
+                    <span class="text-white/60">Silver Tier</span>
+                    <span class="text-primary italic">150 pts to Gold</span>
+                </div>
+                <div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                    <div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 75%;"></div>
+                </div>
+                <div class="flex justify-between text-[10px] text-white/30 uppercase tracking-widest font-700">
+                    <span>0</span>
+                    <span>1000 (Gold)</span>
+                </div>
+            </div>
+            <i class="fas fa-coins absolute -right-8 -bottom-8 text-9xl text-white/5 rotate-12"></i>
+        </div>
+
+        <div class="p-8 rounded-[40px] bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 flex flex-col justify-between">
+            <div>
+                <h4 class="font-600 text-stone-900 dark:text-white mb-2">Refer a Friend</h4>
+                <p class="text-xs text-stone-500 leading-relaxed">Give 20% off, get <span class="text-primary font-600">200 points</span> when they start growing.</p>
+            </div>
+            <div class="mt-6 space-y-3">
+                <div class="flex items-center gap-2 p-3 bg-stone-50 dark:bg-stone-800 rounded-xl border border-stone-100 dark:border-stone-700">
+                    <input type="text" readonly value="VEXA-FRIEND-24" class="bg-transparent text-[10px] font-600 flex-grow outline-none text-stone-600 dark:text-stone-400">
+                    <button class="text-primary text-xs"><i class="fas fa-copy"></i></button>
+                </div>
+                <button class="w-full py-3 bg-primary text-white rounded-xl text-[11px] font-700 uppercase tracking-widest shadow-lg shadow-primary/20">Invite Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-y-6">
+        <h5 class="text-xs font-700 uppercase tracking-[0.2em] text-stone-400 px-2">Available Rewards</h5>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            
+            <div class="group relative bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[32px] p-6 hover:border-primary/50 transition-all">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="w-14 h-14 rounded-2xl bg-stone-50 dark:bg-stone-800 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                        <i class="fas fa-percent text-xl"></i>
+                    </div>
+                    <span class="text-xs font-700 text-stone-400">500 PTS</span>
+                </div>
+                <h4 class="font-600 text-stone-900 dark:text-white mb-2">$10 Discount</h4>
+                <p class="text-xs text-stone-500 leading-relaxed mb-6">Applicable on any seed refill pack or subscription renewal.</p>
+                <button class="w-full py-3 border-2 border-stone-100 dark:border-stone-800 text-stone-600 dark:text-stone-300 rounded-xl text-[11px] font-700 uppercase tracking-widest group-hover:border-primary group-hover:text-primary transition-all">
+                    Redeem Reward
+                </button>
+            </div>
+
+            <div class="group relative bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[32px] p-6 hover:border-primary/50 transition-all">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="w-14 h-14 rounded-2xl bg-stone-50 dark:bg-stone-800 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                        <i class="fas fa-truck text-xl"></i>
+                    </div>
+                    <span class="text-xs font-700 text-stone-400">300 PTS</span>
+                </div>
+                <h4 class="font-600 text-stone-900 dark:text-white mb-2">Free Express Shipping</h4>
+                <p class="text-xs text-stone-500 leading-relaxed mb-6">Skip the wait on your next refill. Priority dispatch included.</p>
+                <button class="w-full py-3 border-2 border-stone-100 dark:border-stone-800 text-stone-600 dark:text-stone-300 rounded-xl text-[11px] font-700 uppercase tracking-widest group-hover:border-primary group-hover:text-primary transition-all">
+                    Redeem Reward
+                </button>
+            </div>
+
+            <div class="group relative bg-stone-50 dark:bg-stone-800/20 border border-dashed border-stone-200 dark:border-stone-800 rounded-[32px] p-6 opacity-60">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="w-14 h-14 rounded-2xl bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400">
+                        <i class="fas fa-gift text-xl"></i>
+                    </div>
+                    <span class="text-xs font-700 text-stone-400">1200 PTS</span>
+                </div>
+                <h4 class="font-600 text-stone-900 dark:text-white mb-2">Exclusive Seed Variety</h4>
+                <p class="text-xs text-stone-500 leading-relaxed mb-6">Unlock the Rare Black Kale heirloom seeds. Not available in shop.</p>
+                <div class="w-full py-3 bg-stone-200 dark:bg-stone-800 rounded-xl text-[10px] text-center font-700 uppercase tracking-widest text-stone-500">
+                    Locked
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-8 rounded-[40px] bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+        <h5 class="text-xs font-700 uppercase tracking-[0.2em] text-stone-400 mb-8 px-2">Earning History</h5>
+        <div class="space-y-6">
+            <div class="flex items-center justify-between border-b border-stone-50 dark:border-stone-800 pb-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-[10px]"><i class="fas fa-plus"></i></div>
+                    <div>
+                        <p class="text-sm font-600">Monthly Subscription Bonus</p>
+                        <p class="text-[10px] text-stone-500">April 10, 2026</p>
+                    </div>
+                </div>
+                <span class="font-600 text-primary">+50 pts</span>
+            </div>
+            <div class="flex items-center justify-between border-b border-stone-50 dark:border-stone-800 pb-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-[10px]"><i class="fas fa-plus"></i></div>
+                    <div>
+                        <p class="text-sm font-600">Product Review</p>
+                        <p class="text-[10px] text-stone-500">March 28, 2026</p>
+                    </div>
+                </div>
+                <span class="font-600 text-primary">+100 pts</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="settings" class="tab-content hidden space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
+    
+    <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+        <button class="px-6 py-2.5 bg-stone-900 dark:bg-white text-white dark:text-stone-900 rounded-xl text-xs font-600 whitespace-nowrap">Profile</button>
+        <button class="px-6 py-2.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl text-xs font-600 text-stone-500 whitespace-nowrap hover:border-primary transition-colors">Shipping</button>
+        <button class="px-6 py-2.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl text-xs font-600 text-stone-500 whitespace-nowrap hover:border-primary transition-colors">Payment</button>
+        <button class="px-6 py-2.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl text-xs font-600 text-stone-500 whitespace-nowrap hover:border-primary transition-colors">Notifications</button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <div class="lg:col-span-2 space-y-8">
+            <div class="p-8 rounded-[40px] bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm">
+                <h4 class="text-lg font-600 text-stone-900 dark:text-white mb-8">Personal Information</h4>
+                <form class="space-y-6">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1 space-y-2">
+                            <label class="text-[10px] font-700 uppercase tracking-widest text-stone-400 ml-1">Full Name</label>
+                            <input type="text" value="name" class="w-full bg-stone-50 dark:bg-stone-800/50 border border-stone-100 dark:border-stone-700 rounded-2xl px-5 py-4 text-sm outline-none focus:border-primary transition-all">
+                        </div>
+                        <div class="flex-1 space-y-2">
+                            <label class="text-[10px] font-700 uppercase tracking-widest text-stone-400 ml-1">Email Address</label>
+                            <input type="email" value="email@google.com" class="w-full bg-stone-50 dark:bg-stone-800/50 border border-stone-100 dark:border-stone-700 rounded-2xl px-5 py-4 text-sm outline-none focus:border-primary transition-all">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-700 uppercase tracking-widest text-stone-400 ml-1">Bio / Personal Note</label>
+                        <textarea class="w-full bg-stone-50 dark:bg-stone-800/50 border border-stone-100 dark:border-stone-700 rounded-2xl px-5 py-4 text-sm outline-none focus:border-primary h-24 resize-none">Passionate about smart urban farming and aesthetic living.</textarea>
+                    </div>
+                    <div class="pt-4 flex justify-end">
+                        <button class="px-8 py-3.5 bg-primary text-white rounded-2xl font-600 text-sm shadow-xl shadow-primary/20 hover:opacity-90 transition-all">Update Profile</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="p-8 rounded-[40px] bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm">
+                <h4 class="text-lg font-600 text-stone-900 dark:text-white mb-8">Security</h4>
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 p-6 rounded-3xl bg-stone-50 dark:bg-stone-800/30 border border-stone-100 dark:border-stone-700">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-white dark:bg-stone-900 flex items-center justify-center text-stone-400 shadow-sm">
+                            <i class="fas fa-shield"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-600">Two-Factor Authentication</p>
+                            <p class="text-xs text-stone-500">Add an extra layer of security to your account.</p>
+                        </div>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer">
+                        <div class="w-11 h-6 bg-stone-200 peer-focus:outline-none dark:bg-stone-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            <div class="p-8 rounded-[40px] bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm">
+                <h4 class="font-600 text-stone-900 dark:text-white mb-6">Notifications</h4>
+                <div class="space-y-6">
+                    <label class="flex items-center justify-between cursor-pointer group">
+                        <span class="text-sm text-stone-600 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">Water Reminders</span>
+                        <input type="checkbox" checked class="accent-primary w-4 h-4">
+                    </label>
+                    <label class="flex items-center justify-between cursor-pointer group">
+                        <span class="text-sm text-stone-600 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">Shipping Updates</span>
+                        <input type="checkbox" checked class="accent-primary w-4 h-4">
+                    </label>
+                    <label class="flex items-center justify-between cursor-pointer group">
+                        <span class="text-sm text-stone-600 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">Newsletter</span>
+                        <input type="checkbox" class="accent-primary w-4 h-4">
+                    </label>
+                </div>
+            </div>
+
+            <div class="p-8 rounded-[40px] bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20">
+                <h4 class="font-600 text-red-600 mb-4">Danger Zone</h4>
+                <p class="text-xs text-red-600/70 leading-relaxed mb-6">Permanently delete your account and all associated growth data. This action cannot be undone.</p>
+                <button class="w-full py-4 bg-white dark:bg-stone-900 text-red-600 border border-red-200 dark:border-red-900/30 rounded-2xl text-[11px] font-700 uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all">
+                    Delete Account
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    </main>
+
+    <script>
+        // TAB SWITCHING LOGIC
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            document.getElementById('current-tab-title').innerText = tabId.charAt(0).toUpperCase() + tabId.slice(1);
+            
+            // Sidebar active state
+            document.querySelectorAll('.sidebar-btn').forEach(btn => {
+                btn.classList.toggle('active-nav', btn.dataset.tab === tabId);
+            });
+            
+            // Mobile Nav active state
+            document.querySelectorAll('.nav-item-m').forEach(item => {
+                item.classList.toggle('text-primary', item.dataset.tab === tabId);
+                item.classList.toggle('text-stone-400', item.dataset.tab !== tabId);
+            });
+        }
+
+        // INITIALIZE PERSISTENCE
+        document.addEventListener("DOMContentLoaded", () => {
+            const html = document.documentElement;
+            const darkBtn = document.getElementById('dark-toggle');
+            const ltrBtn = document.getElementById('ltr-toggle');
+
+            // Theme
+            if (localStorage.getItem('theme') === 'light') html.classList.remove('dark');
+            darkBtn.onclick = () => {
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            };
+
+            // Direction
+            const currentDir = localStorage.getItem('direction') || 'ltr';
+            html.setAttribute('dir', currentDir);
+            ltrBtn.innerText = currentDir.toUpperCase();
+            ltrBtn.onclick = () => {
+                const newDir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+                html.setAttribute('dir', newDir);
+                localStorage.setItem('direction', newDir);
+                ltrBtn.innerText = newDir.toUpperCase();
+            };
+
+            switchTab('overview');
+        });
+    </script>
+</body>
+</html>
