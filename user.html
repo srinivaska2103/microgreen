@@ -85,18 +85,7 @@
     </nav>
 
     <div class="p-6 border-t border-stone-100 dark:border-stone-800 space-y-6">
-        <div class="flex items-center justify-between gap-4 p-2 bg-stone-50 dark:bg-stone-800 rounded-2xl w-full max-w-[200px]">
-    <!-- LTR/RTL Toggle -->
-    <button id="layout-toggle" class="flex-1 py-2 text-[10px] font-600 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-500 uppercase tracking-widest transition-all hover:border-[#C16747]/50">
-        LTR
-    </button>
-    
-    <!-- Dark Mode Toggle -->
-    <button id="theme-toggle" class="px-4 py-2 text-stone-500 dark:text-stone-400 hover:text-[#C16747] transition-colors">
-        <i class="fas fa-moon dark:hidden"></i>
-        <i class="fas fa-sun hidden dark:block"></i>
-    </button>
-</div>
+ 
 <script>
     // --- Theme Logic (Dark/Light) ---
 const themeToggle = document.getElementById('theme-toggle');
@@ -236,12 +225,7 @@ function applyLayout(dir) {
                 
             </nav>
 
-            <div class="absolute bottom-8 left-8 right-8">
-                <div class="flex items-center gap-3 p-4 bg-stone-50 dark:bg-stone-800 rounded-2xl border border-stone-200 dark:border-stone-700">
-                    <button id="ltr-toggle" class="px-3 py-1 text-[10px] font-600 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-full text-stone-400">LTR</button>
-                    <button id="dark-toggle" class="p-2 text-stone-400 hover:text-primary"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i></button>
-                </div>
-            </div>
+            
         </div>
     </aside>
 
@@ -254,6 +238,18 @@ function applyLayout(dir) {
                     <i class="fas fa-bell"></i>
                     <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
                 </button>
+                      <div class="flex items-center justify-between gap-4 p-2 bg-stone-50 dark:bg-stone-800 rounded-2xl w-full max-w-[200px]">
+    <!-- LTR/RTL Toggle -->
+    <button id="layout-toggle" class="flex-1 py-2 text-[10px] font-600 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-500 uppercase tracking-widest transition-all hover:border-[#C16747]/50">
+        LTR
+    </button>
+    
+    <!-- Dark Mode Toggle -->
+    <button id="theme-toggle" class="px-4 py-2 text-stone-500 dark:text-stone-400 hover:text-[#C16747] transition-colors">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
+</div>
                 <img src="assets/t3" class="w-10 h-10 rounded-full border border-primary">
             </div>
         </header>
