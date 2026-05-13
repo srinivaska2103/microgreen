@@ -226,15 +226,23 @@
                 - stone-950 (Light) / white (Dark)
                 - drop-shadow used as a 'safety buffer' against the natural image colors
             -->
-            <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-700 text-stone-950 dark:text-white leading-[1.1] tracking-tight transition-colors drop-shadow-[0_2px_10px_rgba(255,255,255,0.5)] dark:drop-shadow-[0_5px_15px_rgba(0,0,0,0.4)]">
-                Let’s Start Your <br class="hidden sm:block"> 
-                <span class="text-[#C16747]">Urban Farm</span>
-            </h1>
-            
-            <!-- Paragraph: Stronger contrast for natural backgrounds -->
-            <p class="mt-8 text-base md:text-xl text-stone-800 dark:text-stone-200 font-500 max-w-2xl mx-auto leading-relaxed px-2 transition-colors drop-shadow-sm">
-                Whether you’re a home gourmet or a commercial chef, our specialists are ready to help you optimize your harvest.
-            </p>
+           <!-- Main Heading -->
+<!-- Changed: Font weight to 800 for extra 'punch', updated drop-shadows for cleaner separation -->
+<h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-800 text-stone-950 dark:text-white leading-[1.1] tracking-tighter transition-colors 
+           drop-shadow-[0_2px_12px_rgba(255,255,255,0.8)] dark:drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
+    Let’s Start Your <br class="hidden sm:block"> 
+    <!-- High-Visibility Adaptive Span -->
+<span class="text-[#FF9F7C] dark:text-[#FF9F7C] font-600 transition-colors duration-300">
+    Urban Farm
+</span>
+</h1>
+
+<!-- Paragraph -->
+<!-- Changed: text-stone-900 for Light Mode, text-white/90 for Dark Mode, increased font-weight to 600 -->
+<p class="mt-8 text-base md:text-xl text-stone-900 dark:text-slate-100 font-600 max-w-2xl mx-auto leading-relaxed px-4 transition-colors 
+          drop-shadow-[0_1px_8px_rgba(255,255,255,1)] dark:drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+    Whether you’re a home gourmet or a commercial chef, our specialists are ready to help you <span class="text-stone-950 dark:text-white font-800">optimize your harvest.</span>
+</p>
 
             <!-- Buttons -->
             <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
