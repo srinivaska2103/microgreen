@@ -192,73 +192,62 @@
 <div class="bg-white dark:bg-[#0A0A0A] transition-colors duration-500">
 
 <!-- Optimized Hero: Natural Image + Adaptive Text -->
-<header class="relative pt-32 pb-16 md:pt-48 md:pb-24 overflow-hidden min-h-[70vh] lg:min-h-[85vh] flex items-center bg-stone-100 dark:bg-[#0A0A0A] transition-colors duration-500">
+<!-- Redesigned Hero: Clean, Modern & Professional -->
+<header class="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-stone-50 dark:bg-stone-950 transition-colors duration-500">
     
-    <!-- Background: Natural & Visible -->
-    <div class="absolute inset-0 z-0 overflow-hidden">
-        <img src="assets/contacthero" 
-             alt="Urban Farming Background" 
-             class="w-full h-full object-cover opacity-100 transition-all duration-700">
+    <!-- Background: Clean & Subtle -->
+    <div class="absolute inset-0 z-0">
+        <img src="assets/blog1" 
+             alt="Urban Farming" 
+             class="w-full h-full object-cover object-center opacity-100">
         
-        <!-- 
-            THE "NORMAL" IMAGE FIX: 
-            We use a multi-layer gradient that is nearly transparent in the center 
-            to let the natural image colors shine, but darkens/lightens 
-            the edges specifically for text contrast.
-        -->
-        <div class="absolute inset-0 bg-gradient-to-b 
-                    from-white/20 via-transparent to-white/80 
-                    dark:from-black/40 dark:via-transparent dark:to-[#0A0A0A] 
-                    transition-all duration-500">
-        </div>
+        <!-- Refined Overlay: Clean White (Light) / Deep Black (Dark) -->
+        <!-- No more mid-screen gradients; just a clean wash for legibility -->
+        <div class="absolute inset-0 bg-white/60 dark:bg-black/70 backdrop-blur-[2px]"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div class="text-center max-w-4xl mx-auto">
-            
-            <!-- Badge -->
-            <div class="mt-8 md:mt-0 inline-flex items-center gap-2 px-4 py-1.5 bg-[#C16747]/10 border border-[#C16747]/20 text-[#C16747] rounded-full font-600 text-[10px] md:text-xs tracking-[0.2em] uppercase mb-6 backdrop-blur-sm">
-                <i class="fas fa-leaf text-[10px] animate-pulse"></i> Connect With Us
-            </div>
-            
-            <!-- 
-                Headline: 
-                - stone-950 (Light) / white (Dark)
-                - drop-shadow used as a 'safety buffer' against the natural image colors
-            -->
-           <!-- Main Heading -->
-<!-- Changed: Font weight to 800 for extra 'punch', updated drop-shadows for cleaner separation -->
-<h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-800 text-stone-950 dark:text-white leading-[1.1] tracking-tighter transition-colors 
-           drop-shadow-[0_2px_12px_rgba(255,255,255,0.8)] dark:drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
-    Let’s Start Your <br class="hidden sm:block"> 
-    <!-- High-Visibility Adaptive Span -->
-<span class="text-[#FF9F7C] dark:text-[#FF9F7C] font-600 transition-colors duration-300">
-    Urban Farm
-</span>
-</h1>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        
+        <!-- Minimalist Badge -->
+        <div class="inline-flex items-center gap-3 px-4 py-2 bg-white/80 dark:bg-stone-900/80 border border-stone-200 dark:border-stone-800 rounded-full mb-8 shadow-sm">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C16747] opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-[#C16747]"></span>
+            </span>
+            <span class="text-[10px] font-700 uppercase tracking-[0.2em] text-stone-600 dark:text-stone-400">Connect With Us</span>
+        </div>
 
-<!-- Paragraph -->
-<!-- Changed: text-stone-900 for Light Mode, text-white/90 for Dark Mode, increased font-weight to 600 -->
-<p class="mt-8 text-base md:text-xl text-stone-900 dark:text-slate-100 font-600 max-w-2xl mx-auto leading-relaxed px-4 transition-colors 
-          drop-shadow-[0_1px_8px_rgba(255,255,255,1)] dark:drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
-    Whether you’re a home gourmet or a commercial chef, our specialists are ready to help you <span class="text-stone-950 dark:text-white font-800">optimize your harvest.</span>
-</p>
+        <!-- Headline: Balanced and Bold without Shadows -->
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-800 text-stone-900 dark:text-white leading-[1.05] tracking-tight mb-6">
+            Let’s Start Your <br class="hidden md:block">
+            <span class="text-[#C16747]">Urban Farm</span>
+        </h1>
 
-            <!-- Buttons -->
-            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button class="w-full sm:w-auto px-10 py-5 bg-[#C16747] text-white rounded-2xl font-600 text-sm uppercase tracking-widest shadow-xl shadow-[#C16747]/20 hover:shadow-[#C16747]/40 hover:-translate-y-1 transition-all active:scale-95">
-                    Consult an Expert
-                </button>
-                
-                <button class="w-full sm:w-auto px-10 py-5 border-2 border-stone-300 dark:border-stone-700 text-stone-900 dark:text-white rounded-2xl font-600 text-sm uppercase tracking-widest hover:border-[#C16747] hover:text-[#C16747] transition-all active:scale-95 bg-white/20 dark:bg-black/20 backdrop-blur-md">
-                    Explore Kits
-                </button>
-            </div>
+        <!-- Subtext: Clean Gray Tones -->
+        <p class="max-w-2xl mx-auto text-lg md:text-xl text-stone-600 dark:text-stone-400 font-400 leading-relaxed mb-10">
+            Whether you’re a home gourmet or a commercial chef, our specialists help you 
+            <span class="text-stone-900 dark:text-stone-200 font-600">optimize every harvest</span> 
+            with precision technology.
+        </p>
+
+        <!-- Action Area: High Contrast Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button class="w-full sm:w-auto px-8 py-4 bg-[#C16747] hover:bg-[#a8563a] text-white rounded-xl font-600 text-sm uppercase tracking-widest transition-all shadow-lg shadow-[#C16747]/20">
+                Consult an Expert
+            </button>
+            
+            <button class="w-full sm:w-auto px-8 py-4 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-white rounded-xl font-600 text-sm uppercase tracking-widest hover:bg-stone-50 dark:hover:bg-stone-800 transition-all shadow-sm">
+                Explore Kits
+            </button>
+        </div>
+
+        <!-- Trust Indicator -->
+        <div class="mt-16 pt-8 border-t border-stone-200/60 dark:border-stone-800/60">
+            <p class="text-[10px] uppercase tracking-[0.3em] text-stone-400 dark:text-stone-500 font-700">
+                Trusted by 500+ Urban Growers
+            </p>
         </div>
     </div>
-
-    <!-- Center Glow -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-[#C16747]/10 rounded-full blur-[100px] -z-0 pointer-events-none"></div>
 </header>
 
     <section class="py-12 md:py-24">
